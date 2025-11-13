@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Course, RegisteredCourse } from '../types/course'
 import { availableCourses } from '../data/courses'
+import { useUser } from '../context/UserContext'
 import CourseCard from './CourseCard'
 import RegisteredCoursesList from './RegisteredCoursesList'
 import WeeklyCalendar from './WeeklyCalendar'
 
 const RegistrationDashboard = () => {
-  const [registeredCourses, setRegisteredCourses] = useState<RegisteredCourse[]>([])
+  const { registeredCourses, addRegisteredCourse, removeRegisteredCourse } = useUser()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedDepartment, setSelectedDepartment] = useState<string>('all')
   const [viewMode, setViewMode] = useState<'courses' | 'calendar'>('courses')
@@ -29,17 +30,17 @@ const RegistrationDashboard = () => {
       ...course,
       registeredAt: new Date().toISOString()
     }
-    setRegisteredCourses([...registeredCourses, registeredCourse])
+    addRegisteredCourse(registeredCourse)
   }
 
   const handleDrop = (courseId: string) => {
-    setRegisteredCourses(registeredCourses.filter(c => c.id !== courseId))
+    removeRegisteredCourse(courseId)
   }
 
   const totalCredits = registeredCourses.reduce((sum, course) => sum + course.credits, 0)
 
-  const handleLogout = () => {
-    navigate('/login')
+  const handleBackToWelcome = () => {
+    navigate('/welcome')
   }
 
   return (
@@ -53,10 +54,10 @@ const RegistrationDashboard = () => {
               <p className="text-blue-200 mt-1">Course Registration System</p>
             </div>
             <button
-              onClick={handleLogout}
+              onClick={handleBackToWelcome}
               className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors font-medium"
             >
-              Logout
+              Back to Dashboard
             </button>
           </div>
         </div>
