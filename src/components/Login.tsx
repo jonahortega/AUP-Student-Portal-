@@ -18,7 +18,7 @@ const Login = ({ onLogin }: LoginProps) => {
     // Simple validation - in a real app, this would call an API
     if (email && password) {
       onLogin()
-      navigate('/dashboard')
+      navigate('/welcome')
     } else {
       setError('Please enter both email and password')
     }

@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Course } from '../types/course'
+import CourseDetailModal from './CourseDetailModal'
 
 interface CourseCardProps {
   course: Course
@@ -6,11 +8,13 @@ interface CourseCardProps {
 }
 
 const CourseCard = ({ course, onRegister }: CourseCardProps) => {
+  const [showModal, setShowModal] = useState(false)
   const spotsPercentage = (course.availableSpots / course.totalSpots) * 100
   const isLowAvailability = spotsPercentage < 25
 
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-200">
+    <>
+      <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-200 cursor-pointer" onClick={() => setShowModal(true)}>
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
@@ -61,7 +65,10 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
       </div>
 
       <button
-        onClick={onRegister}
+        onClick={(e) => {
+          e.stopPropagation()
+          onRegister()
+        }}
         disabled={course.availableSpots === 0}
         className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${
           course.availableSpots === 0
@@ -71,7 +78,24 @@ const CourseCard = ({ course, onRegister }: CourseCardProps) => {
       >
         {course.availableSpots === 0 ? 'Full' : 'Register for Course'}
       </button>
+      <div className="mt-2 text-center">
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            setShowModal(true)
+          }}
+          className="text-sm text-aup-blue hover:underline"
+        >
+          View Course Details
+        </button>
+      </div>
     </div>
+    <CourseDetailModal
+      course={course}
+      isOpen={showModal}
+      onClose={() => setShowModal(false)}
+    />
+    </>
   )
 }
 

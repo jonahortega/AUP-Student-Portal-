@@ -68,6 +68,14 @@ const Profile = ({ user }: ProfileProps) => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Academic Year</label>
                   <div className="text-lg text-gray-900 font-medium">{user.year}</div>
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Major</label>
+                  <div className="text-lg text-gray-900 font-medium">{user.major}</div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Academic Counselor</label>
+                  <div className="text-lg text-gray-900 font-medium">{user.counselor}</div>
+                </div>
               </div>
             </div>
 

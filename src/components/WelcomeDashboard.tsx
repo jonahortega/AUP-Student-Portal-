@@ -4,7 +4,7 @@ import { useAuth } from '../App'
 
 const WelcomeDashboard = () => {
   const navigate = useNavigate()
-  const { user, registeredCourses } = useUser()
+  const { user, registeredCourses, totalCompletedCredits } = useUser()
   const { setIsAuthenticated } = useAuth()
 
   const menuItems = [
@@ -70,7 +70,7 @@ const WelcomeDashboard = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
             <div className="text-3xl font-bold mb-2">{registeredCourses.length}</div>
             <div className="text-blue-200">Courses Registered</div>
@@ -79,12 +79,24 @@ const WelcomeDashboard = () => {
             <div className="text-3xl font-bold mb-2">
               {registeredCourses.reduce((sum, course) => sum + course.credits, 0)}
             </div>
-            <div className="text-blue-200">Total Credits</div>
+            <div className="text-blue-200">Current Credits</div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
-            <div className="text-3xl font-bold mb-2">120</div>
-            <div className="text-blue-200">Credits Required</div>
-          </div>
+          <button
+            onClick={() => navigate('/completed-courses')}
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white hover:bg-white/20 transition-all cursor-pointer text-left"
+          >
+            <div className="text-3xl font-bold mb-2">{totalCompletedCredits}</div>
+            <div className="text-blue-200">Credits Completed</div>
+            <div className="text-xs text-blue-300 mt-2">Click to view details →</div>
+          </button>
+          <button
+            onClick={() => navigate('/required-courses')}
+            className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white hover:bg-white/20 transition-all cursor-pointer text-left"
+          >
+            <div className="text-3xl font-bold mb-2">{120 - totalCompletedCredits}</div>
+            <div className="text-blue-200">Credits Remaining</div>
+            <div className="text-xs text-blue-300 mt-2">Click to view required courses →</div>
+          </button>
         </div>
       </div>
     </div>

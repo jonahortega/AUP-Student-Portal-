@@ -1,29 +1,21 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { RegisteredCourse } from '../types/course'
-import { availableCourses } from '../data/courses'
 import { degreeRequirements } from '../data/degreeRequirements'
-import { User } from '../types/user'
+import { useUser } from '../context/UserContext'
+import { availableCourses } from '../data/courses'
+import CourseDetailModal from './CourseDetailModal'
+import { Course } from '../types/course'
 
-interface CourseCatalogueProps {
-  user: User
-  registeredCourses: RegisteredCourse[]
-  completedCourses: string[]
-}
-
-const CourseCatalogue = ({ registeredCourses, completedCourses }: CourseCatalogueProps) => {
+const CourseCatalogue = () => {
   const navigate = useNavigate()
-
-  // Calculate completed credits
-  const completedCredits = completedCourses.reduce((total, courseId) => {
-    const course = availableCourses.find(c => c.id === courseId)
-    return total + (course?.credits || 0)
-  }, 0)
+  const { registeredCourses, completedCoursesList, totalCompletedCredits } = useUser()
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
+  const [showModal, setShowModal] = useState(false)
 
   // Get completed course names
-  const completedCourseNames = completedCourses.map(courseId => {
-    const course = availableCourses.find(c => c.id === courseId)
-    return course ? `${course.code} - ${course.title}` : ''
-  }).filter(Boolean)
+  const completedCourseNames = completedCoursesList.map(course => 
+    `${course.code} - ${course.title}`
+  )
 
   // Calculate remaining requirements
   const calculateProgress = (requirement: typeof degreeRequirements[0]) => {
@@ -32,14 +24,11 @@ const CourseCatalogue = ({ registeredCourses, completedCourses }: CourseCatalogu
     if (requirement.requiredCourses) {
       // Count specific required courses completed
       completed = requirement.requiredCourses.filter(courseCode => {
-        return completedCourses.some(courseId => {
-          const course = availableCourses.find(c => c.id === courseId)
-          return course?.code === courseCode
-        })
+        return completedCoursesList.some(course => course.code === courseCode)
       }).length
     } else {
       // For credit-based requirements, calculate from completed credits
-      completed = Math.min(completedCredits, requirement.requiredCredits)
+      completed = Math.min(totalCompletedCredits, requirement.requiredCredits)
     }
     
     const remaining = requirement.requiredCredits - completed
@@ -73,16 +62,16 @@ const CourseCatalogue = ({ registeredCourses, completedCourses }: CourseCatalogu
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-md p-6">
             <div className="text-sm text-gray-600 mb-2">Courses Completed</div>
-            <div className="text-4xl font-bold text-aup-blue">{completedCourses.length}</div>
+            <div className="text-4xl font-bold text-aup-blue">{completedCoursesList.length}</div>
           </div>
           <div className="bg-white rounded-xl shadow-md p-6">
             <div className="text-sm text-gray-600 mb-2">Credits Completed</div>
-            <div className="text-4xl font-bold text-aup-blue">{completedCredits}</div>
+            <div className="text-4xl font-bold text-aup-blue">{totalCompletedCredits}</div>
           </div>
           <div className="bg-white rounded-xl shadow-md p-6">
             <div className="text-sm text-gray-600 mb-2">Credits Remaining</div>
             <div className="text-4xl font-bold text-green-600">
-              {120 - completedCredits}
+              {120 - totalCompletedCredits}
             </div>
           </div>
         </div>
@@ -100,11 +89,26 @@ const CourseCatalogue = ({ registeredCourses, completedCourses }: CourseCatalogu
               </div>
             ) : (
               <div className="space-y-2">
-                {completedCourseNames.map((courseName, index) => (
-                  <div key={index} className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <div className="text-sm font-medium text-gray-800">{courseName}</div>
-                  </div>
-                ))}
+                {completedCoursesList.map((course, index) => {
+                  const fullCourse = availableCourses.find(c => c.code === course.code)
+                  return (
+                    <div
+                      key={index}
+                      className="p-3 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 cursor-pointer transition-colors"
+                      onClick={() => {
+                        if (fullCourse) {
+                          setSelectedCourse(fullCourse)
+                          setShowModal(true)
+                        }
+                      }}
+                    >
+                      <div className="text-sm font-medium text-gray-800">{course.code} - {course.title}</div>
+                      {fullCourse && (
+                        <div className="text-xs text-gray-500 mt-1">Click to view details</div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
           </div>
@@ -142,10 +146,9 @@ const CourseCatalogue = ({ registeredCourses, completedCourses }: CourseCatalogu
                         <div className="text-xs font-medium text-gray-700 mb-2">Required Courses:</div>
                         <div className="flex flex-wrap gap-2">
                           {requirement.requiredCourses.map((courseCode) => {
-                            const isCompleted = completedCourses.some(courseId => {
-                              const course = availableCourses.find(c => c.id === courseId)
-                              return course?.code === courseCode
-                            })
+                            const isCompleted = completedCoursesList.some(course => 
+                              course.code === courseCode
+                            )
                             return (
                               <span
                                 key={courseCode}
@@ -195,6 +198,14 @@ const CourseCatalogue = ({ registeredCourses, completedCourses }: CourseCatalogu
           )}
         </div>
       </div>
+      <CourseDetailModal
+        course={selectedCourse}
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false)
+          setSelectedCourse(null)
+        }}
+      />
     </div>
   )
 }

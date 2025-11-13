@@ -4,6 +4,8 @@ export interface User {
   email: string
   idNumber: string
   year: string
+  major: string
+  counselor: string
   completedCourses: string[] // Array of course IDs
 }
 

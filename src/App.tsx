@@ -7,6 +7,8 @@ import RegistrationDashboard from './components/RegistrationDashboard'
 import CourseCatalogue from './components/CourseCatalogue'
 import MySchedule from './components/MySchedule'
 import Profile from './components/Profile'
+import CompletedCoursesPage from './components/CompletedCoursesPage'
+import RequiredCoursesPage from './components/RequiredCoursesPage'
 import { useUser } from './context/UserContext'
 
 interface AuthContextType {
@@ -35,7 +37,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
 function AppRoutes() {
   const { isAuthenticated, setIsAuthenticated } = useAuth()
-  const { user, registeredCourses } = useUser()
+  const { user } = useUser()
 
   return (
     <Routes>
@@ -73,11 +75,7 @@ function AppRoutes() {
         path="/catalogue" 
         element={
           isAuthenticated ? (
-            <CourseCatalogue 
-              user={user} 
-              registeredCourses={registeredCourses}
-              completedCourses={user.completedCourses}
-            />
+            <CourseCatalogue />
           ) : (
             <Navigate to="/login" replace />
           )
@@ -98,6 +96,26 @@ function AppRoutes() {
         element={
           isAuthenticated ? (
             <Profile user={user} />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        } 
+      />
+      <Route 
+        path="/completed-courses" 
+        element={
+          isAuthenticated ? (
+            <CompletedCoursesPage />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        } 
+      />
+      <Route 
+        path="/required-courses" 
+        element={
+          isAuthenticated ? (
+            <RequiredCoursesPage />
           ) : (
             <Navigate to="/login" replace />
           )

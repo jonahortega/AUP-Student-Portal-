@@ -17,8 +17,19 @@ export const degreeRequirements: DegreeRequirement[] = [
     id: 'major',
     category: 'Major Requirements',
     requiredCredits: 45,
-    requiredCourses: ['CS3048', 'CS2071'], // Example: specific courses required
-    description: 'Courses specific to your major'
+    requiredCourses: [
+      'CS3048', // Human and Computer Interactions
+      'CS2071', // Languages and Data Structures
+      'CS2015', // Programming 2
+      'CS3050', // Computer Networks
+      'CS2100', // Discrete Mathematics
+      'CS3010', // Database Systems
+      'CS3020', // Operating Systems
+      'CS4000', // Software Engineering
+      'CS3500', // Web Development
+      'CS3200'  // Algorithm Design and Analysis
+    ],
+    description: 'Courses specific to your Computer Science major'
   },
   {
     id: 'electives',
