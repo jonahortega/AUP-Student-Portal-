@@ -8,7 +8,7 @@ const WelcomeDashboard = () => {
   const { setIsAuthenticated } = useAuth()
 
   const menuItems = [
-    { name: 'Dashboard', path: '/dashboard', icon: '📊' },
+    { name: 'Registration', path: '/dashboard', icon: '📊' },
     { name: 'Course Catalogue', path: '/catalogue', icon: '📚' },
     { name: 'My Schedule', path: '/schedule', icon: '📅' },
     { name: 'Profile', path: '/profile', icon: '👤' }
