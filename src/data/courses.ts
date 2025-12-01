@@ -1,4 +1,4 @@
-import { Course, Term } from '../types/course'
+import { Course } from '../types/course'
 
 export const availableCourses: Course[] = [
   {

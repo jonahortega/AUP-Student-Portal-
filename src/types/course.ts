@@ -1,4 +1,4 @@
-export type Term = 'Spring 2026' | 'Fall 2026' | 'Spring 2027' | 'Fall 2027' | 'Spring 2028' | 'Fall 2028'
+export type Term = 'Fall 2024' | 'Spring 2025' | 'Spring 2026' | 'Fall 2026' | 'Spring 2027' | 'Fall 2027' | 'Spring 2028' | 'Fall 2028'
 
 export interface Course {
   id: string

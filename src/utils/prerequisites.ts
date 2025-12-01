@@ -1,5 +1,4 @@
 import { Course, PendingCourse } from '../types/course'
-import { useUser } from '../context/UserContext'
 
 export interface PrerequisiteError {
   type: 'prerequisite_not_fulfilled'

@@ -5,7 +5,6 @@ import { defaultUser } from '../data/user'
 import { availableCourses } from '../data/courses'
 import { completedCoursesData } from '../data/completedCourses'
 import { checkScheduleOverlap, checkCreditLimit, OverlapError } from '../utils/scheduleOverlap'
-import { checkPrerequisites } from '../utils/prerequisites'
 
 interface UserContextType {
   user: User

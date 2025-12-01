@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Course, RegisteredCourse, PendingCourse, Term } from '../types/course'
+import { Course, PendingCourse, Term } from '../types/course'
 import { availableCourses } from '../data/courses'
 import { useUser } from '../context/UserContext'
 import CourseCard from './CourseCard'

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Course } from '../types/course'
 import CourseDetailModal from './CourseDetailModal'
-import { getDepartmentColorLight, getDepartmentColorText } from '../utils/departmentColors'
+import { getDepartmentColorLight } from '../utils/departmentColors'
 
 interface CourseCardProps {
   course: Course
