@@ -1,4 +1,5 @@
 import { RegisteredCourse } from '../types/course'
+import { getDepartmentColorLight } from '../utils/departmentColors'
 
 interface RegisteredCoursesListProps {
   courses: RegisteredCourse[]
@@ -11,17 +12,24 @@ const RegisteredCoursesList = ({ courses, onDrop }: RegisteredCoursesListProps) 
       {courses.map(course => (
         <div
           key={course.id}
-          className="border border-gray-200 rounded-lg p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
+          className="border-2 border-green-200 rounded-lg p-4 bg-green-50 hover:bg-green-100 transition-colors"
         >
           <div className="flex justify-between items-start mb-2">
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex items-center gap-2 mb-1 flex-wrap">
                 <span className="font-bold text-aup-blue text-sm">{course.code}</span>
                 <span className="text-xs text-gray-500">{course.credits} cr</span>
+                <span className={`px-2 py-0.5 border rounded text-xs ${getDepartmentColorLight(course.department)}`}>
+                  {course.department}
+                </span>
+                <span className="px-2 py-0.5 bg-purple-100 text-purple-800 text-xs rounded">
+                  {course.term}
+                </span>
               </div>
               <h4 className="font-semibold text-gray-800 text-sm mb-1">{course.title}</h4>
               <p className="text-xs text-gray-600 mb-1">{course.professor}</p>
               <p className="text-xs text-gray-500">{course.schedule}</p>
+              <p className="text-xs text-gray-500 mt-1">{course.location}</p>
             </div>
           </div>
           <button

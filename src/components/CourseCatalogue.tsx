@@ -4,13 +4,19 @@ import { degreeRequirements } from '../data/degreeRequirements'
 import { useUser } from '../context/UserContext'
 import { availableCourses } from '../data/courses'
 import CourseDetailModal from './CourseDetailModal'
-import { Course } from '../types/course'
+import { Course, Term } from '../types/course'
+import { getDepartmentColorLight } from '../utils/departmentColors'
 
 const CourseCatalogue = () => {
   const navigate = useNavigate()
   const { registeredCourses, completedCoursesList, totalCompletedCredits } = useUser()
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
   const [showModal, setShowModal] = useState(false)
+  const [selectedTerm, setSelectedTerm] = useState<Term>('Spring 2026')
+  
+  const terms: Term[] = ['Spring 2026', 'Fall 2026', 'Spring 2027', 'Fall 2027', 'Spring 2028', 'Fall 2028']
+  
+  const filteredRegisteredCourses = registeredCourses.filter(course => course.term === selectedTerm)
 
   // Get completed course names
   const completedCourseNames = completedCoursesList.map(course => 
@@ -58,6 +64,24 @@ const CourseCatalogue = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Term Filter */}
+        <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Filter by Term
+          </label>
+          <select
+            value={selectedTerm}
+            onChange={(e) => setSelectedTerm(e.target.value as Term)}
+            className="w-full md:w-auto px-6 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-aup-blue focus:border-transparent outline-none bg-white font-medium"
+          >
+            {terms.map(term => (
+              <option key={term} value={term}>
+                {term}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-md p-6">
@@ -71,7 +95,7 @@ const CourseCatalogue = () => {
           <div className="bg-white rounded-xl shadow-md p-6">
             <div className="text-sm text-gray-600 mb-2">Credits Remaining</div>
             <div className="text-4xl font-bold text-green-600">
-              {120 - totalCompletedCredits}
+              {128 - totalCompletedCredits}
             </div>
           </div>
         </div>
@@ -88,13 +112,13 @@ const CourseCatalogue = () => {
                 <p>No courses completed yet</p>
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {completedCoursesList.map((course, index) => {
                   const fullCourse = availableCourses.find(c => c.code === course.code)
                   return (
                     <div
                       key={index}
-                      className="p-3 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 cursor-pointer transition-colors"
+                      className="p-4 bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-200 rounded-lg hover:shadow-md cursor-pointer transition-all transform hover:scale-105"
                       onClick={() => {
                         if (fullCourse) {
                           setSelectedCourse(fullCourse)
@@ -102,10 +126,26 @@ const CourseCatalogue = () => {
                         }
                       }}
                     >
-                      <div className="text-sm font-medium text-gray-800">{course.code} - {course.title}</div>
-                      {fullCourse && (
-                        <div className="text-xs text-gray-500 mt-1">Click to view details</div>
-                      )}
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-bold text-aup-blue">{course.code}</span>
+                            <span className="px-2 py-0.5 bg-green-200 text-green-800 text-xs font-semibold rounded">
+                              {course.credits} cr
+                            </span>
+                            {fullCourse && (
+                              <span className={`px-2 py-0.5 border rounded text-xs ${getDepartmentColorLight(fullCourse.department)}`}>
+                                {fullCourse.department}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-sm font-semibold text-gray-800 mb-1">{course.title}</div>
+                          <div className="text-xs text-gray-600">{course.professor}</div>
+                        </div>
+                        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
                     </div>
                   )
                 })}
@@ -174,10 +214,15 @@ const CourseCatalogue = () => {
 
         {/* Current Registration */}
         <div className="mt-8 bg-white rounded-xl shadow-md p-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Currently Registered Courses</h2>
-          {registeredCourses.length === 0 ? (
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Currently Registered Courses - {selectedTerm}
+          </h2>
+          {filteredRegisteredCourses.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
-              <p>No courses currently registered</p>
+              <svg className="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <p>No courses currently registered for {selectedTerm}</p>
               <button
                 onClick={() => navigate('/dashboard')}
                 className="mt-4 px-6 py-2 bg-aup-blue text-white rounded-lg hover:bg-blue-800 transition-colors"
@@ -187,11 +232,20 @@ const CourseCatalogue = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {registeredCourses.map((course) => (
-                <div key={course.id} className="border border-gray-200 rounded-lg p-4">
-                  <div className="font-semibold text-gray-800">{course.code}</div>
-                  <div className="text-sm text-gray-600">{course.title}</div>
-                  <div className="text-xs text-gray-500 mt-2">{course.credits} credits</div>
+              {filteredRegisteredCourses.map((course) => (
+                <div key={course.id} className="border-2 border-green-200 bg-green-50 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-bold text-aup-blue">{course.code}</span>
+                    <span className="px-2 py-0.5 bg-green-200 text-green-800 text-xs font-semibold rounded">
+                      {course.credits} cr
+                    </span>
+                    <span className={`px-2 py-0.5 border rounded text-xs ${getDepartmentColorLight(course.department)}`}>
+                      {course.department}
+                    </span>
+                  </div>
+                  <div className="font-semibold text-gray-800 mb-1">{course.title}</div>
+                  <div className="text-sm text-gray-600 mb-1">{course.professor}</div>
+                  <div className="text-xs text-gray-500">{course.schedule}</div>
                 </div>
               ))}
             </div>

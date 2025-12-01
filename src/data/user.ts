@@ -1,7 +1,7 @@
 import { User } from '../types/user'
 
 export const defaultUser: User = {
-  firstName: 'John',
+  firstName: 'Jonah',
   lastName: 'Pork',
   email: 'jpork@aup.edu',
   idNumber: 'a115569',

@@ -92,7 +92,7 @@ const RequiredCoursesPage = () => {
   }
 
   const requiredCourses = getRequiredCourses()
-  const totalRemaining = 120 - totalCompletedCredits
+  const totalRemaining = 128 - totalCompletedCredits
 
   // Get all available courses that haven't been completed
   const completedCourseCodes = new Set(completedCoursesList.map(c => c.code))

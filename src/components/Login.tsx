@@ -109,7 +109,7 @@ const Login = ({ onLogin }: LoginProps) => {
 
         {/* Footer */}
         <p className="text-center text-blue-200 text-sm mt-6">
-          © 2024 American University of Paris. All rights reserved.
+          © 2025 American University of Paris. A Jonah Ortega Project.
         </p>
       </div>
     </div>

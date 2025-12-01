@@ -46,7 +46,7 @@ export const degreeRequirements: DegreeRequirement[] = [
   {
     id: 'total',
     category: 'Total Degree Credits',
-    requiredCredits: 120,
+    requiredCredits: 128,
     description: 'Total credits required for graduation'
   }
 ]

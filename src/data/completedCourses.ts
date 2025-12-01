@@ -7,14 +7,15 @@ export const completedCoursesData: Course[] = [
     id: 'comp-1',
     code: 'CS1010',
     title: 'Introduction to Computer Science',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Computer Science',
-    description: 'Introduction to programming and computer science fundamentals.'
+    description: 'Introduction to programming and computer science fundamentals.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-2',
@@ -27,46 +28,50 @@ export const completedCoursesData: Course[] = [
     availableSpots: 0,
     totalSpots: 0,
     department: 'Computer Science',
-    description: 'Fundamental programming concepts and problem-solving techniques.'
+    description: 'Fundamental programming concepts and problem-solving techniques.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-3',
     code: 'ENG1010',
     title: 'Composition and Rhetoric',
-    credits: 3,
+    credits: 4,
     professor: 'Marco Pascucci',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'English',
-    description: 'Introduction to academic writing and critical thinking.'
+    description: 'Introduction to academic writing and critical thinking.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-4',
     code: 'MATH1010',
     title: 'College Algebra',
-    credits: 3,
+    credits: 4,
     professor: 'Ruth Corran',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Mathematics',
-    description: 'Algebraic concepts and problem-solving techniques.'
+    description: 'Algebraic concepts and problem-solving techniques.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-5',
     code: 'HIST1010',
     title: 'World History I',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'History',
-    description: 'Survey of world history from ancient civilizations to 1500.'
+    description: 'Survey of world history from ancient civilizations to 1500.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-6',
@@ -79,7 +84,8 @@ export const completedCoursesData: Course[] = [
     availableSpots: 0,
     totalSpots: 0,
     department: 'French Studies',
-    description: 'Introduction to French language and culture.'
+    description: 'Introduction to French language and culture.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-7',
@@ -92,33 +98,36 @@ export const completedCoursesData: Course[] = [
     availableSpots: 0,
     totalSpots: 0,
     department: 'French Studies',
-    description: 'Continued study of French language and culture.'
+    description: 'Continued study of French language and culture.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-8',
     code: 'PHIL1010',
     title: 'Introduction to Philosophy',
-    credits: 3,
+    credits: 4,
     professor: 'Marco Pascucci',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Philosophy',
-    description: 'Introduction to major philosophical questions and thinkers.'
+    description: 'Introduction to major philosophical questions and thinkers.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-9',
     code: 'ART1010',
     title: 'Art History Survey',
-    credits: 3,
+    credits: 4,
     professor: 'Georgi Stojanov',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Art History',
-    description: 'Survey of art history from ancient to modern times.'
+    description: 'Survey of art history from ancient to modern times.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-10',
@@ -131,7 +140,8 @@ export const completedCoursesData: Course[] = [
     availableSpots: 0,
     totalSpots: 0,
     department: 'Computer Science',
-    description: 'Object-oriented programming concepts and design patterns.'
+    description: 'Object-oriented programming concepts and design patterns.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-11',
@@ -144,46 +154,50 @@ export const completedCoursesData: Course[] = [
     availableSpots: 0,
     totalSpots: 0,
     department: 'Mathematics',
-    description: 'Advanced calculus topics including integration and series.'
+    description: 'Advanced calculus topics including integration and series.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-12',
     code: 'LIT2010',
     title: 'World Literature',
-    credits: 3,
+    credits: 4,
     professor: 'Georgi Stojanov',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Literature',
-    description: 'Survey of world literature from various cultures and periods.'
+    description: 'Survey of world literature from various cultures and periods.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-13',
     code: 'ECON1010',
     title: 'Principles of Economics',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Economics',
-    description: 'Introduction to micro and macroeconomics.'
+    description: 'Introduction to micro and macroeconomics.',
+    term: 'Spring 2025'
   },
   {
     id: 'comp-14',
     code: 'POL1010',
     title: 'Introduction to Political Science',
-    credits: 3,
+    credits: 4,
     professor: 'Marco Pascucci',
     schedule: 'Completed',
     location: 'N/A',
     availableSpots: 0,
     totalSpots: 0,
     department: 'Political Science',
-    description: 'Introduction to political systems and theories.'
+    description: 'Introduction to political systems and theories.',
+    term: 'Fall 2024'
   },
   {
     id: 'comp-15',
@@ -196,7 +210,8 @@ export const completedCoursesData: Course[] = [
     availableSpots: 0,
     totalSpots: 0,
     department: 'Computer Science',
-    description: 'Study of fundamental data structures and algorithm analysis.'
+    description: 'Study of fundamental data structures and algorithm analysis.',
+    term: 'Spring 2025'
   }
 ]
 

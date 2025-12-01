@@ -1,18 +1,19 @@
-import { Course } from '../types/course'
+import { Course, Term } from '../types/course'
 
 export const availableCourses: Course[] = [
   {
     id: '1',
     code: 'CS3048',
     title: 'Human and Computer Interactions',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Mon, Wed 10:00-11:30',
     location: 'Room 201',
     availableSpots: 8,
     totalSpots: 25,
     department: 'Computer Science',
-    description: 'An introduction to the design and evaluation of human-computer interfaces, focusing on usability principles and user experience design.'
+    description: 'An introduction to the design and evaluation of human-computer interfaces, focusing on usability principles and user experience design.',
+    term: 'Spring 2026'
   },
   {
     id: '2',
@@ -25,111 +26,120 @@ export const availableCourses: Course[] = [
     availableSpots: 5,
     totalSpots: 20,
     department: 'Computer Science',
-    description: 'Study of fundamental data structures and programming language concepts, including arrays, linked lists, trees, and algorithms.'
+    description: 'Study of fundamental data structures and programming language concepts, including arrays, linked lists, trees, and algorithms.',
+    term: 'Spring 2026'
   },
   {
     id: '3',
     code: 'MA1025',
     title: 'Pre-Calculus',
-    credits: 3,
+    credits: 4,
     professor: 'Ruth Corran',
     schedule: 'Mon 13:00-16:00',
     location: 'Room 501',
     availableSpots: 12,
     totalSpots: 18,
     department: 'Mathematics',
-    description: 'Preparation for calculus covering functions, trigonometry, exponential and logarithmic functions, and analytic geometry.'
+    description: 'Preparation for calculus covering functions, trigonometry, exponential and logarithmic functions, and analytic geometry.',
+    term: 'Spring 2026'
   },
   {
     id: '4',
     code: 'HIST 1001',
     title: 'Introduction to European History',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Wed, Fri 11:00-12:30',
     location: 'Room 102',
     availableSpots: 3,
     totalSpots: 22,
     department: 'History',
-    description: 'A comprehensive survey of European history from the Renaissance to the present day, focusing on major political, social, and cultural developments.'
+    description: 'A comprehensive survey of European history from the Renaissance to the present day, focusing on major political, social, and cultural developments.',
+    term: 'Fall 2026'
   },
   {
     id: '5',
     code: 'FREN 2001',
     title: 'Advanced French Language',
-    credits: 3,
+    credits: 4,
     professor: 'Marco Pascucci',
     schedule: 'Tue, Thu 09:00-10:30',
     location: 'Room 401',
     availableSpots: 15,
     totalSpots: 30,
     department: 'French Studies',
-    description: 'Advanced study of French grammar, composition, and conversation for students with intermediate proficiency.'
+    description: 'Advanced study of French grammar, composition, and conversation for students with intermediate proficiency.',
+    term: 'Spring 2026'
   },
   {
     id: '6',
     code: 'ART 1501',
     title: 'Modern Art in Paris',
-    credits: 3,
+    credits: 4,
     professor: 'Georgi Stojanov',
     schedule: 'Mon, Wed 15:00-16:30',
     location: 'Studio A',
     availableSpots: 7,
     totalSpots: 20,
     department: 'Art History',
-    description: 'Exploration of modern art movements in Paris, with visits to major museums and galleries throughout the city.'
+    description: 'Exploration of modern art movements in Paris, with visits to major museums and galleries throughout the city.',
+    term: 'Fall 2026'
   },
   {
     id: '7',
     code: 'PHIL 2101',
     title: 'Existentialism and Modern Thought',
-    credits: 3,
+    credits: 4,
     professor: 'Marco Pascucci',
     schedule: 'Tue 13:00-16:00',
     location: 'Room 301',
     availableSpots: 10,
     totalSpots: 25,
     department: 'Philosophy',
-    description: 'An examination of existentialist philosophy through the works of Sartre, Camus, and other key thinkers.'
+    description: 'An examination of existentialist philosophy through the works of Sartre, Camus, and other key thinkers.',
+    term: 'Spring 2027'
   },
   {
     id: '8',
     code: 'ECON 3001',
     title: 'International Economics',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Mon, Wed, Fri 10:00-11:00',
     location: 'Room 401',
     availableSpots: 20,
     totalSpots: 35,
     department: 'Economics',
-    description: 'Analysis of international trade, finance, and economic policy in a globalized world.'
+    description: 'Analysis of international trade, finance, and economic policy in a globalized world.',
+    term: 'Spring 2026'
   },
   {
     id: '9',
     code: 'LIT 2201',
     title: 'Paris in Literature',
-    credits: 3,
+    credits: 4,
     professor: 'Georgi Stojanov',
     schedule: 'Thu 14:00-17:00',
     location: 'Room 205',
     availableSpots: 6,
     totalSpots: 22,
     department: 'Literature',
-    description: 'Study of how Paris has been represented in literature from the 19th century to contemporary works.'
+    description: 'Study of how Paris has been represented in literature from the 19th century to contemporary works.',
+    term: 'Fall 2026'
   },
   {
     id: '10',
     code: 'POL 2501',
     title: 'European Union Politics',
-    credits: 3,
+    credits: 4,
     professor: 'Marco Pascucci',
     schedule: 'Wed 18:00-21:00',
     location: 'Room 301',
     availableSpots: 4,
     totalSpots: 18,
     department: 'Political Science',
-    description: 'Comprehensive study of the European Union\'s institutions, policies, and political dynamics.'
+    description: 'Comprehensive study of the European Union\'s institutions, policies, and political dynamics.',
+    term: 'Spring 2027'
   },
   {
     id: '11',
@@ -142,20 +152,23 @@ export const availableCourses: Course[] = [
     availableSpots: 12,
     totalSpots: 25,
     department: 'Computer Science',
-    description: 'Advanced programming concepts including object-oriented design, inheritance, polymorphism, and exception handling. Builds upon Programming 1 with more complex projects.'
+    description: 'Advanced programming concepts including object-oriented design, inheritance, polymorphism, and exception handling. Builds upon Programming 1 with more complex projects.',
+    term: 'Fall 2026',
+    prerequisites: ['CS1010'] // Requires Introduction to Computer Science
   },
   {
     id: '12',
     code: 'CS3050',
     title: 'Computer Networks',
-    credits: 3,
+    credits: 4,
     professor: 'Lebron James',
     schedule: 'Tue, Thu 10:00-11:30',
     location: 'Room 403',
     availableSpots: 15,
     totalSpots: 28,
     department: 'Computer Science',
-    description: 'Introduction to computer networks, network protocols, TCP/IP, routing, switching, and network security. Hands-on experience with network configuration and troubleshooting.'
+    description: 'Introduction to computer networks, network protocols, TCP/IP, routing, switching, and network security. Hands-on experience with network configuration and troubleshooting.',
+    term: 'Spring 2026'
   },
   {
     id: '13',
@@ -168,20 +181,24 @@ export const availableCourses: Course[] = [
     availableSpots: 18,
     totalSpots: 30,
     department: 'Computer Science',
-    description: 'Mathematical foundations for computer science including logic, set theory, combinatorics, graph theory, and proof techniques essential for algorithm analysis.'
+    description: 'Mathematical foundations for computer science including logic, set theory, combinatorics, graph theory, and proof techniques essential for algorithm analysis.',
+    term: 'Fall 2026',
+    prerequisites: ['MATH1010'] // Requires College Algebra
   },
   {
     id: '14',
     code: 'CS3010',
     title: 'Database Systems',
-    credits: 3,
+    credits: 4,
     professor: 'David Sturman',
     schedule: 'Tue, Thu 13:00-14:30',
     location: 'Room 405',
     availableSpots: 10,
     totalSpots: 22,
     department: 'Computer Science',
-    description: 'Design and implementation of database systems, SQL, relational database theory, normalization, and database administration.'
+    description: 'Design and implementation of database systems, SQL, relational database theory, normalization, and database administration.',
+    term: 'Spring 2027',
+    prerequisites: ['CS2015', 'CS2100'] // Requires Programming 2 and Discrete Mathematics
   },
   {
     id: '15',
@@ -194,33 +211,38 @@ export const availableCourses: Course[] = [
     availableSpots: 8,
     totalSpots: 20,
     department: 'Computer Science',
-    description: 'Operating system concepts including process management, memory management, file systems, and concurrency. Practical experience with system programming.'
+    description: 'Operating system concepts including process management, memory management, file systems, and concurrency. Practical experience with system programming.',
+    term: 'Fall 2027',
+    prerequisites: ['CS2015', 'CS2100'] // Requires Programming 2 and Discrete Mathematics
   },
   {
     id: '16',
     code: 'CS4000',
     title: 'Software Engineering',
-    credits: 3,
+    credits: 4,
     professor: 'Six Seven',
     schedule: 'Wed 14:00-17:00',
     location: 'Room 407',
     availableSpots: 14,
     totalSpots: 24,
     department: 'Computer Science',
-    description: 'Software development lifecycle, requirements analysis, design patterns, testing, version control, and project management methodologies.'
+    description: 'Software development lifecycle, requirements analysis, design patterns, testing, version control, and project management methodologies.',
+    term: 'Spring 2026',
+    prerequisites: ['CS2015'] // Requires Programming 2
   },
   {
     id: '17',
     code: 'CS3500',
     title: 'Web Development',
-    credits: 3,
+    credits: 4,
     professor: 'Lebron James',
     schedule: 'Tue, Thu 11:00-12:30',
     location: 'Room 408',
     availableSpots: 20,
     totalSpots: 30,
     department: 'Computer Science',
-    description: 'Modern web development including HTML, CSS, JavaScript, front-end frameworks, back-end development, and web application deployment.'
+    description: 'Modern web development including HTML, CSS, JavaScript, front-end frameworks, back-end development, and web application deployment.',
+    term: 'Fall 2026'
   },
   {
     id: '18',
@@ -233,7 +255,9 @@ export const availableCourses: Course[] = [
     availableSpots: 6,
     totalSpots: 18,
     department: 'Computer Science',
-    description: 'Advanced algorithm design techniques, complexity analysis, dynamic programming, greedy algorithms, and graph algorithms.'
+    description: 'Advanced algorithm design techniques, complexity analysis, dynamic programming, greedy algorithms, and graph algorithms.',
+    term: 'Spring 2027',
+    prerequisites: ['CS2015', 'CS2100'] // Requires Programming 2 and Discrete Mathematics
   }
 ]
 
